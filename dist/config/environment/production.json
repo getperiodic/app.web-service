@@ -1,0 +1,8 @@
+{
+	"name": "Periodic Web App",
+	"version": "0.0.1",
+	"application":{
+		"port": "8081",
+		"environment": "production"
+	}
+}
