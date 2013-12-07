@@ -6,12 +6,12 @@
 		"environment": "development"
 	},
 	"sessions":{
-		"enabled":true,
+		"enabled":false,
 		"type":"mongo"
 	},
 	"userauth":{
-		"enabled":true,
-		"rememberme":true,
-		"passport":true
+		"enabled":false,
+		"rememberme":false,
+		"passport":false
 	}
 }

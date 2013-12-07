@@ -16,7 +16,6 @@ var express = require('express'),
 		require('longjohn');
 	}
 
-
 var app = express();
 
 // all environments
