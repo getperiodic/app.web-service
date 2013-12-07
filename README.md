@@ -9,10 +9,11 @@ Boilerplate web service / api
     $ npm run webservice
     
 ## Developing
-**You need to make sure you have nodemon installed globally first**
+**You need to make sure you have nodemon and grunt installed globally first**
 
 ### Installing nodemon
     $ npm install nodemon -g
+    $ npm install grunt-cli -g
 
 ### Starting service 
     $ cd periodic/app.web-service
