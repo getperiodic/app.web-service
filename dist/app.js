@@ -124,6 +124,7 @@ var init = {
 	serverStatus: function(){
 		console.log('Express server listening on port ' + app.get('port'));
 		console.log('Running in environment: '+app.get('env'));
+		logger.info('looks good');
 	}
 };
 
