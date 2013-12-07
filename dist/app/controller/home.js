@@ -1,9 +1,10 @@
 'use strict';
 var path = require('path'),
 	periodic = require('../helpers/periodic.controller'),
-	sampledata = require('../resources/sample/sampledata');
+	sampledata = require('../resources/sample/sampledata'),
+	controller_resource=false;
 
-exports.index = function(req, res, next){
+var index = function(req, res, next){
 	var pageData = {
 		title: 'Home page',
 		page: {name:'home'},
@@ -14,7 +15,7 @@ exports.index = function(req, res, next){
 	res.render('home/index', pageData);
 };
 
-exports.page = function(req, res, next){
+var page = function(req, res, next){
 	var file = path.resolve(__dirname,"../views/periodic/samplelayout.json"),
 		pageData = {
 			title: 'Random page',
@@ -41,3 +42,14 @@ exports.page = function(req, res, next){
 		});
 };
 
+
+var controller = function(resource){
+	controller_resource= resource;
+
+	return{
+		index: index,
+		page: page
+	};
+};
+
+module.exports = controller;

@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           {expand: true,cwd: 'dist', src: ['.jshintrc'], dest: '../../periodic/app.web-service/'},//
           {expand: true,cwd: 'dist', src: ['.gitignore'], dest: '../../periodic/app.web-service/'},//
           {expand: true,cwd: 'dist', src: ['.nodemonignore'], dest: '../../periodic/app.web-service/'},//
-          {expand: true,cwd: 'dist', src: ['**'], dest: '../../periodic/app.web-service/'},//
+          {expand: true,cwd: 'dist', src: ['**'], dest: '../../periodic/app.web-service/'}//
         ]
       }
     },

@@ -1,6 +1,6 @@
 'use strict';
-
-var home = require('../controller/home');
+var sampleSharedVar = "sfh";
+var home = require('../controller/home')(sampleSharedVar);
 
 exports = module.exports = function(app){
 	app.get('/',home.index);

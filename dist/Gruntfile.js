@@ -71,7 +71,7 @@ module.exports = function(grunt) {
           'config/**/*.js',
           'model/**/*.js',
           'app.js',
-          'package.json',
+          'package.json'
           // 'app/resources/browserify/src/*.js',
           // 'public/stylesheets/*.less'
         ],

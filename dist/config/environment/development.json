@@ -5,6 +5,9 @@
 		"port": "3331",
 		"environment": "development"
 	},
+	"cookies":{
+		"cookieParser":"asdfsfa"
+	},
 	"sessions":{
 		"enabled":false,
 		"type":"mongo"

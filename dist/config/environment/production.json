@@ -4,5 +4,17 @@
 	"application":{
 		"port": "8081",
 		"environment": "production"
+	},
+	"cookies":{
+		"cookieParser":"asdfsfa"
+	},
+	"sessions":{
+		"enabled":false,
+		"type":"memory"
+	},
+	"userauth":{
+		"enabled":false,
+		"rememberme":false,
+		"passport":false
 	}
 }

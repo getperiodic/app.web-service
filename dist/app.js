@@ -8,9 +8,11 @@ var express = require('express'),
 	http = require('http'),
 	path = require('path'),
 	flash = require('connect-flash'),
-	engine = require('periodic.layout.generate.ejs-locals'),
 	configsettings = require('./config/config'),
-	appconfig = new configsettings();
+	appconfig = new configsettings(),
+	logger = require('./config/logger');
+
+	logger.info("winston log works");
 
 	if(process.env.NODE_ENV !== 'production'){
 		require('longjohn');
@@ -19,7 +21,6 @@ var express = require('express'),
 var app = express();
 
 // all environments
-app.engine('ejs', engine);
 app.set('port', appconfig.settings.get('application:port'));
 app.set('env', appconfig.settings.get('application:environment'));
 app.set('views', __dirname + '/app/views');
@@ -84,7 +85,9 @@ var init = {
 	},
 	useLocals: function(){
 		app.use(function(req, res, next) {
-			res.locals.token = req.session._csrf;
+			if(appconfig.settings.get('sessions:enabled')){
+				res.locals.token = req.session._csrf;
+			}
 			res.locals.title = '';
 			res.locals.headerjs = '';
 			res.locals.footerjs = '';
@@ -94,6 +97,11 @@ var init = {
 			res.locals.viewHelper = require('./app/views/_helpers/viewHelpers');
 			next();
 		});
+	},
+	useCSRF: function(){
+		if(appconfig.settings.get('sessions:enabled')){
+			app.use(express.csrf());
+		}
 	},
 	devLogErrors: function(){
 		if ('development' === app.get('env')) {
@@ -120,13 +128,13 @@ app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/publ
 app.use(express.methodOverride());
 
 //use cookies
-app.use(express.cookieParser('asfdsfasds'));
+app.use(express.cookieParser(appconfig.settings.get('cookies:cookieParser')));
 
 //use sessions
 init.useSessions();
 
 //use cross script request forgery protection
-app.use(express.csrf());
+init.useCSRF();
 
 //use flash messages
 app.use(flash());
