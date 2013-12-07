@@ -12,6 +12,8 @@ lib-cov
 
 pids
 results
+!logs
+logs/*
 
 public/temp
 
