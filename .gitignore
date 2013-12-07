@@ -10,8 +10,11 @@ lib-cov
 *.swo
 *.gz
 
+!.gitkeep
+
 pids
 results
 
 npm-debug.log
-node_modules/
+node_modules/*
+dist/logs/*

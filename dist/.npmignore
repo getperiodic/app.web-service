@@ -7,3 +7,8 @@ examples/
 support/
 test/
 testing.js
+node_modules
+node_modules/*
+!.gitignore
+logs/*
+!logs

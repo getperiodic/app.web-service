@@ -8,3 +8,10 @@ support/
 test/
 testing.js
 node_modules/*
+dist/node_modules*
+dist/node_modules/*
+dist/logs/*
+
+!.gitkeep
+!.gitignore
+!dist/.gitignore

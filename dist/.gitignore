@@ -12,10 +12,13 @@ lib-cov
 
 pids
 results
-!logs
+
 logs/*
+!logs
 
 public/temp
 
 npm-debug.log
-node_modules/
+node_modules/*
+node_modules*
+node_modules
