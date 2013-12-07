@@ -7,8 +7,8 @@
 
 
 'use strict';
-var exec = require('child_process').exec,
-    fs = require('fs');
+// var exec = require('child_process').exec,
+//     fs = require('fs');
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         'config/**/*.js',
         'app.js',
         'lib/**/*.js',
-        'app/resources/browserify/src/*.js',
+        // 'app/resources/browserify/src/*.js',
         'test/**/*.js'
       ]
     },
@@ -72,8 +72,8 @@ module.exports = function(grunt) {
           'model/**/*.js',
           'app.js',
           'package.json',
-          'app/resources/browserify/src/*.js',
-          'public/stylesheets/*.less'
+          // 'app/resources/browserify/src/*.js',
+          // 'public/stylesheets/*.less'
         ],
         tasks: ['lint', 'less'],
         options: {
@@ -104,14 +104,14 @@ module.exports = function(grunt) {
   grunt.registerTask('lint', 'jshint');
   grunt.registerTask('test', 'simplemocha');
 
-  var broswerifyFiles = fs.readdirSync(__dirname+"/app/resources/browserify/src");
+  // var broswerifyFiles = fs.readdirSync(__dirname+"/app/resources/browserify/src");
 
-  grunt.event.on('watch', function(action, filepath, target) {
-    for(var x in broswerifyFiles){
-      exec("browserify "+__dirname+"/app/resources/browserify/src/"+broswerifyFiles[x]+" -o "+__dirname+"/public/scripts/"+broswerifyFiles[x]);
-    }
-    // exec("browserify "+__dirname+"/app/resources/browserify/src/footer.js -o "+__dirname+"/public/scripts/appfooter.js");
-    // grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
-  });
+  // grunt.event.on('watch', function(action, filepath, target) {
+  //   for(var x in broswerifyFiles){
+  //     exec("browserify "+__dirname+"/app/resources/browserify/src/"+broswerifyFiles[x]+" -o "+__dirname+"/public/scripts/"+broswerifyFiles[x]);
+  //   }
+  //   // exec("browserify "+__dirname+"/app/resources/browserify/src/footer.js -o "+__dirname+"/public/scripts/appfooter.js");
+  //   // grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+  // });
 };
 
