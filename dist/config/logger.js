@@ -1,18 +1,37 @@
 'use strict';
 
-var winston = require('winston');
-	// events = require('events'),
-	// util = require('util');
-// console.log("logger env: ",process.env.NODE_ENV)
-var logger = new (winston.Logger)({
-	transports:[
-		new (winston.transports.Console)(),
-		new (winston.transports.File)({ filename: 'logs/app.log'})
-	]
-});
+var winston = require('winston'),
+	logger,
+	loggerConfig={};
 
-// util.inherits(config,events.EventEmitter);
+if(process.env.NODE_ENV === "production"){
+	loggerConfig = {
+		transports:[
+			new (winston.transports.Console)({level:'error',colorize: 'true'}),
+			new (winston.transports.File)({ filename: 'logs/app.log',level:'error'})
+		],
+		exceptionHandlers:[
+			new (winston.transports.Console)({colorize: 'true'}),
+			new (winston.transports.File)({ filename: 'logs/exception-errors.log'})
+		],
+		handleExceptions: true
+	};
+}
+else{
+	loggerConfig = {
+		transports:[
+			new (winston.transports.Console)({colorize: 'true'}),
+			new (winston.transports.File)({ filename: 'logs/app.log'})
+		],
+		exceptionHandlers:[
+			new (winston.transports.Console)({colorize: 'true'}),
+			new (winston.transports.File)({ filename: 'logs/exception-errors.log'})
+		],
+		handleExceptions: true
+	};
+}
 
-// logger.prototype._another = function(options){
-// };
+var logger = new (winston.Logger)(loggerConfig);
+logger.exitOnError = false;
+
 module.exports = logger;

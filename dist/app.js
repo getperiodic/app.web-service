@@ -12,8 +12,6 @@ var express = require('express'),
 	appconfig = new configsettings(),
 	logger = require('./config/logger');
 
-	logger.info("winston log works");
-
 	if(process.env.NODE_ENV !== 'production'){
 		require('longjohn');
 	}
@@ -103,10 +101,25 @@ var init = {
 			app.use(express.csrf());
 		}
 	},
-	devLogErrors: function(){
-		if ('development' === app.get('env')) {
-			app.use(express.errorHandler());
-		}
+	logErrors: function(){
+		//log errors
+		app.use(function(err, req, res, next){
+			logger.error(err.stack);
+			next(err);
+		});
+
+		//send client errors
+		//catch all errors
+		app.use(function (err, req, res, next) {
+			// console.log("err.name",err.name);
+			if (req.xhr) {
+				res.send(500, { error: 'Something blew up!' });
+			}
+			else {
+				res.status(500);
+				res.render('errors/500', { error: err });
+			}
+		});
 	},
 	serverStatus: function(){
 		console.log('Express server listening on port ' + app.get('port'));
@@ -149,7 +162,7 @@ init.useLocals();
 app.use(app.router);
 
 // development only
-init.devLogErrors();
+init.logErrors();
 
 //complie less to css
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
