@@ -2,7 +2,7 @@
   "title": "Periodic Boilerplate web-service",
   "name": "periodic.app.web-service",
   "description": "web service layer for decoupled digital publishing framework",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "engines": {
     "node": ">=0.10.x"
